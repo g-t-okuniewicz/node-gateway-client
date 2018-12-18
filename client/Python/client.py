@@ -21,6 +21,12 @@ xml_string = '<temp_readings>'
 xml_string += response.data.decode('ascii')
 xml_string += '</temp_readings>'
 
-tree = ET.fromstring(xml_string)
+root = ET.fromstring(xml_string)
 
-print(tree)
+print(root.tag)
+
+for reading in root:
+    print('Time: ' + reading.find('time').text)
+    print('Temp: ' + reading.find('temperature').text)
+    
+#print(tree)
