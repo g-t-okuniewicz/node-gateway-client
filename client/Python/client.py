@@ -8,6 +8,8 @@
 #print resp
 
 import urllib3
+import xml.etree.cElementTree as ET
+import re
 
 http = urllib3.PoolManager()
 
@@ -15,4 +17,10 @@ url = 'http://localhost:8080/'
 
 response = http.request('GET', url)
 
-print(response.data)
+xml_string = '<temp_readings>'
+xml_string += response.data.decode('ascii')
+xml_string += '</temp_readings>'
+
+tree = ET.fromstring(xml_string)
+
+print(tree)
