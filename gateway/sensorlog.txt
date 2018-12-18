@@ -96,3 +96,14 @@
 <reading><time>12:00</time><temperature>25</temperature></reading>
 <reading><time>12:00</time><temperature>25</temperature></reading>
 <reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
+<reading><time>12:00</time><temperature>25</temperature></reading>
