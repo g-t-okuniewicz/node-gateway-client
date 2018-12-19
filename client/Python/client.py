@@ -8,8 +8,9 @@
 #print resp
 
 import urllib3
-import xml.etree.cElementTree as ET
+import xml.etree.cElementTree as et
 import re
+import matplotlib.pyplot as plt
 
 http = urllib3.PoolManager()
 
@@ -21,12 +22,17 @@ xml_string = '<temp_readings>'
 xml_string += response.data.decode('ascii')
 xml_string += '</temp_readings>'
 
-root = ET.fromstring(xml_string)
+root = et.fromstring(xml_string)
 
-print(root.tag)
+timestamps = []
+temperatures = []
 
 for reading in root:
-    print('Time: ' + reading.find('time').text)
-    print('Temp: ' + reading.find('temperature').text)
-    
-#print(tree)
+    print('Time: ' + reading.find('time').text + ', Temp: ' + reading.find('temperature').text)
+    timestamps.append(reading.find('time').text)
+    temperatures.append(float(reading.find('temperature').text))
+
+plt.plot(timestamps, temperatures)
+plt.ylabel('Temperature')
+plt.xticks(timestamps, timestamps, rotation='vertical')
+plt.show()
