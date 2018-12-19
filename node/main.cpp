@@ -1,5 +1,6 @@
 #include "mongoose.h"
 #include <iostream>
+#include <ctime>
 #include <unistd.h>
 
 static const char *url = "localhost:8080/sendreading";
@@ -35,13 +36,36 @@ int main() {
 	std::cout << "Starting the node" << std::endl;
 
 	while(1) {
+
+		//float reading = ((float) rand()) / (float) 50;
+		float reading = -30 + static_cast <float> (rand()) /( static_cast <float> (RAND_MAX/(70)));
+		std::cout << "Temperature: " << reading << std::endl;
+
+		time_t now = time(0);
+		tm *ltm = localtime(&now);
+
+		char timestamp[8];
+		sprintf(timestamp,
+				"%d:%d:%02d",
+				ltm->tm_hour,
+				ltm->tm_min,
+				ltm->tm_sec);
+
+		std::cout << "Time: " << timestamp << std::endl;
+
+		char message[50];
+		sprintf(message,
+				"<reading><time>%s</time><temperature>%.1f</temperature></reading>",
+				timestamp,
+				reading);
+
 		mg_mgr_init(&mgr, NULL);
 
 		mg_connect_http(&mgr,
 				ev_handler,
 				url,
 				"Content-Type: text/plain\r\n",
-				"<reading><time>12:00</time><temperature>25</temperature></reading>"
+				message
 				);
 
 		mg_mgr_free(&mgr);
